@@ -3,12 +3,20 @@ package tech.blur.nstuctf;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.arellomobile.mvp.MvpView;
+import com.arellomobile.mvp.presenter.InjectPresenter;
+
 import ru.terrakok.cicerone.Cicerone;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 import tech.blur.nstuctf.core.LocalNavigator;
+import tech.blur.nstuctf.core.moxy.MvpAndroidxActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MvpAndroidxActivity implements MainActivityView {
+
+    @InjectPresenter
+    MainActivityPresenter presenter;
+
 
     private Router localRouter;
     private NavigatorHolder localNavigatorHolder;
@@ -22,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         cicerone = Cicerone.create();
         localNavigatorHolder = cicerone.getNavigatorHolder();
         localNavigatorHolder.setNavigator(new LocalNavigator(getSupportFragmentManager(), R.id.fragmentHolder));
-
-
 
     }
 
