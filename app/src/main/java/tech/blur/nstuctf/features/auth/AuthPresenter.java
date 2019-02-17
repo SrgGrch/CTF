@@ -1,6 +1,8 @@
 package tech.blur.nstuctf.features.auth;
 
+import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -12,6 +14,7 @@ import tech.blur.nstuctf.core.network.DefaultCallback;
 import tech.blur.nstuctf.core.network.RetrofitProvider;
 import tech.blur.nstuctf.features.auth.api.AuthApi;
 
+@InjectViewState
 public class AuthPresenter extends MvpPresenter<AuthView> {
 
     private String login;

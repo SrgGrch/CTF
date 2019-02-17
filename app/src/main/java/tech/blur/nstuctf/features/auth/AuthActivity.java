@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
+import java.util.Objects;
+
 import tech.blur.nstuctf.R;
 import tech.blur.nstuctf.core.DefaultTextWatcher;
 import tech.blur.nstuctf.core.moxy.MvpAndroidxActivity;
@@ -31,6 +33,8 @@ public class AuthActivity extends MvpAndroidxActivity implements AuthView {
         super.onCreate(savedInstanceState);
 //        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_signin);
 
         editLogin = findViewById(R.id.edit_signin_login);
