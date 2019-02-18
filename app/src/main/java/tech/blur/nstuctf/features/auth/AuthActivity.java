@@ -17,6 +17,7 @@ import java.util.Objects;
 import tech.blur.nstuctf.R;
 import tech.blur.nstuctf.core.DefaultTextWatcher;
 import tech.blur.nstuctf.core.moxy.MvpAndroidxActivity;
+import tech.blur.nstuctf.features.main.MainActivity;
 
 public class AuthActivity extends MvpAndroidxActivity implements AuthView {
 
@@ -68,11 +69,11 @@ public class AuthActivity extends MvpAndroidxActivity implements AuthView {
     @Override
     public void authIsOk() {
         // open main activity
-        Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
+        MainActivity.start(this);
     }
 
     @Override
-    public void showMessage() {
-        Toast.makeText(getApplicationContext(), "neOK", Toast.LENGTH_SHORT).show();
+    public void showMessage(String s) {
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 }

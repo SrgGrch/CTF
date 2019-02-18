@@ -46,7 +46,7 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
 
                 @Override
                 public void onFailure(Throwable throwable) {
-                    getViewState().showMessage();
+                    getViewState().showMessage("Auth failed");
                 }
             }));
         }

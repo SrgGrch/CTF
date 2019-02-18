@@ -5,6 +5,6 @@ import com.arellomobile.mvp.MvpView;
 public interface AuthView extends MvpView {
 
     void authIsOk();
-    void showMessage();
+    void showMessage(String s);
 
 }
