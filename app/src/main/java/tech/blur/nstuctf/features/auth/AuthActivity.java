@@ -1,6 +1,7 @@
 package tech.blur.nstuctf.features.auth;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -16,8 +17,10 @@ import java.util.Objects;
 
 import tech.blur.nstuctf.R;
 import tech.blur.nstuctf.core.DefaultTextWatcher;
+import tech.blur.nstuctf.core.PreferencesApi;
 import tech.blur.nstuctf.core.moxy.MvpAndroidxActivity;
 import tech.blur.nstuctf.features.main.MainActivity;
+import tech.blur.nstuctf.features.recovery.RecoveryActivity;
 
 public class AuthActivity extends MvpAndroidxActivity implements AuthView {
 
@@ -37,6 +40,11 @@ public class AuthActivity extends MvpAndroidxActivity implements AuthView {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_signin);
+
+        presenter.setPrefs(getSharedPreferences(
+                PreferencesApi.sharedPreferencesName,
+                Context.MODE_PRIVATE
+        ));
 
         editLogin = findViewById(R.id.edit_signin_login);
         editPass = findViewById(R.id.edit_signin_password);
@@ -59,21 +67,27 @@ public class AuthActivity extends MvpAndroidxActivity implements AuthView {
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!editLogin.getText().toString().isEmpty() && !editPass.getText().toString().isEmpty()) presenter.onSignInClicked();
-                else Toast.makeText(getApplicationContext(), "Enter your account", Toast.LENGTH_SHORT).show();
+                if (!editLogin.getText().toString().isEmpty() && !editPass.getText().toString().isEmpty())
+                    presenter.onSignInClicked();
+                else
+                    Toast.makeText(getApplicationContext(), "Enter your account", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
     @Override
-    public void authIsOk() {
-        // open main activity
+    public void showMessage(String s) {
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void openRecovery() {
         MainActivity.start(this);
     }
 
     @Override
-    public void showMessage(String s) {
-        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+    public void openMainActivity() {
+        RecoveryActivity.start(this);
     }
 }

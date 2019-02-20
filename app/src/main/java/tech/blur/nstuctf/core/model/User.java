@@ -8,9 +8,9 @@ public class User {
     private String login;
     private String name;
     private String password;
-    private String trusted;
+    private int trusted;
 
-    public User(String id, String login, String password, String name, String trusted) {
+    public User(String id, String login, String password, String name, int trusted) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -24,7 +24,7 @@ public class User {
         this.name = name;
     }
 
-    public String getTrusted() {
+    public int getTrusted() {
         return trusted;
     }
 

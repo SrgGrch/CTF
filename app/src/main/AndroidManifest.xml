@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".features.main.MainActivity" />
+        <activity android:name=".features.recovery.RecoveryActivity" />
+        <activity android:name=".features.recovery.RecoveryActivity" />
     </application>
 
 </manifest>

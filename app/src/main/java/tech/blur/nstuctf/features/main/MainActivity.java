@@ -16,6 +16,7 @@ public class MainActivity extends MvpAndroidxActivity implements MainActivityVie
 
     public static void start(Context context){
         final Intent intent = new Intent(context, MainActivity.class);
+
         //intent.putExtra("isAuth", isAuthAc);
         context.startActivity(intent);
     }
@@ -24,6 +25,8 @@ public class MainActivity extends MvpAndroidxActivity implements MainActivityVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
     }
 

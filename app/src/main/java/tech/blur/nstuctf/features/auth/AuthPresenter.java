@@ -1,12 +1,12 @@
 package tech.blur.nstuctf.features.auth;
 
+import android.content.SharedPreferences;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import tech.blur.nstuctf.App;
+import tech.blur.nstuctf.core.PreferencesApi;
 import tech.blur.nstuctf.core.model.User;
 import tech.blur.nstuctf.core.model.UserAuth;
 import tech.blur.nstuctf.core.network.Carry;
@@ -19,6 +19,7 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
 
     private String login;
     private String pass;
+    private SharedPreferences prefs;
     AuthApi api;
 
     AuthPresenter(){
@@ -27,6 +28,9 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
     }
 
 
+    public void setPrefs(SharedPreferences prefs) {
+        this.prefs = prefs;
+    }
 
     void onLoginChanged(String s){
         login = s;
@@ -41,7 +45,9 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
             api.CheckUser(new UserAuth(login, pass)).enqueue(new DefaultCallback<>(new Carry<User>() {
                 @Override
                 public void onSuccess(User result) {
-                    getViewState().authIsOk();
+                    PreferencesApi.setUser(result, prefs);
+                    if (result.getTrusted() == 0) getViewState().openRecovery();
+                    else getViewState().openMainActivity();
                 }
 
                 @Override
