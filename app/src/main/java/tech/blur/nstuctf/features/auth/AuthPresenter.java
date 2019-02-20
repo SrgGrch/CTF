@@ -45,9 +45,11 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
             api.CheckUser(new UserAuth(login, pass)).enqueue(new DefaultCallback<>(new Carry<User>() {
                 @Override
                 public void onSuccess(User result) {
-                    PreferencesApi.setUser(result, prefs);
-                    if (result.getTrusted() == 0) getViewState().openRecovery();
-                    else getViewState().openMainActivity();
+                    if (result != null) {
+                        PreferencesApi.setUser(result, prefs);
+                        if (result.getTrusted() == 0) getViewState().openRecovery();
+                        else getViewState().openMainActivity();
+                    } else getViewState().showMessage("Auth failed");
                 }
 
                 @Override

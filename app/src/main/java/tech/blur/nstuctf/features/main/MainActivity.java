@@ -30,4 +30,9 @@ public class MainActivity extends MvpAndroidxActivity implements MainActivityVie
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }

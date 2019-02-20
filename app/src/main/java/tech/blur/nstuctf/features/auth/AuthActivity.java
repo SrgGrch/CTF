@@ -35,10 +35,10 @@ public class AuthActivity extends MvpAndroidxActivity implements AuthView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         Objects.requireNonNull(getSupportActionBar()).hide();
+
         setContentView(R.layout.activity_signin);
 
         presenter.setPrefs(getSharedPreferences(
@@ -83,11 +83,12 @@ public class AuthActivity extends MvpAndroidxActivity implements AuthView {
 
     @Override
     public void openRecovery() {
-        MainActivity.start(this);
+        RecoveryActivity.start(this);
+
     }
 
     @Override
-    public void openMainActivity() {
-        RecoveryActivity.start(this);
+    public void openMainActivity(){
+            MainActivity.start(this);
+        }
     }
-}

@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+
+import java.util.Objects;
 
 import tech.blur.nstuctf.R;
 import tech.blur.nstuctf.core.DefaultTextWatcher;
@@ -24,13 +27,18 @@ public class RecoveryActivity extends MvpAndroidxActivity implements RecoveryVie
 
 
     public static void start(Context context) {
-        final Intent intent = new Intent(context, MainActivity.class);
+        final Intent intent = new Intent(context, RecoveryActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
+        setContentView(R.layout.activity_recovery);
 
         presenter.setPrefs(getSharedPreferences(
                 PreferencesApi.sharedPreferencesName,
@@ -53,9 +61,14 @@ public class RecoveryActivity extends MvpAndroidxActivity implements RecoveryVie
                 if (!recoveryPassphrase.getText().toString().isEmpty())
                     presenter.onRecoveryClicked();
                 else
-                    Toast.makeText(getApplicationContext(), "Enter your account", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "wrong passphrase", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 
