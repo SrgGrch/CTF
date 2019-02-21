@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.main.MainActivity" />
+        <activity android:name=".features.objective.ObjectiveActivity" />
         <activity android:name=".features.recovery.RecoveryActivity" />
     </application>
 

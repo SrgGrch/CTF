@@ -5,10 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -19,7 +17,7 @@ import tech.blur.nstuctf.R;
 import tech.blur.nstuctf.core.DefaultTextWatcher;
 import tech.blur.nstuctf.core.PreferencesApi;
 import tech.blur.nstuctf.core.moxy.MvpAndroidxActivity;
-import tech.blur.nstuctf.features.main.MainActivity;
+import tech.blur.nstuctf.features.objective.ObjectiveActivity;
 import tech.blur.nstuctf.features.recovery.RecoveryActivity;
 
 public class AuthActivity extends MvpAndroidxActivity implements AuthView {
@@ -89,6 +87,6 @@ public class AuthActivity extends MvpAndroidxActivity implements AuthView {
 
     @Override
     public void openMainActivity(){
-            MainActivity.start(this);
+            ObjectiveActivity.start(this);
         }
     }

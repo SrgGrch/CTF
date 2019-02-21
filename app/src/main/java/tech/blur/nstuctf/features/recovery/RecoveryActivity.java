@@ -17,7 +17,7 @@ import tech.blur.nstuctf.R;
 import tech.blur.nstuctf.core.DefaultTextWatcher;
 import tech.blur.nstuctf.core.PreferencesApi;
 import tech.blur.nstuctf.core.moxy.MvpAndroidxActivity;
-import tech.blur.nstuctf.features.main.MainActivity;
+import tech.blur.nstuctf.features.objective.ObjectiveActivity;
 
 public class RecoveryActivity extends MvpAndroidxActivity implements RecoveryView {
 
@@ -79,6 +79,6 @@ public class RecoveryActivity extends MvpAndroidxActivity implements RecoveryVie
 
     @Override
     public void onRecoveryComplete() {
-        MainActivity.start(this);
+        ObjectiveActivity.start(this);
     }
 }
