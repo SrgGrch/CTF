@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".features.auth.AuthActivity"
+            android:name="tech.blur.features.auth.AuthActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.objective.ObjectiveActivity" />
-        <activity android:name=".features.recovery.RecoveryActivity" />
+        <activity android:name="tech.blur.features.objective.ObjectiveActivity" />
+        <activity android:name="tech.blur.features.recovery.RecoveryActivity" />
     </application>
 
 </manifest>
