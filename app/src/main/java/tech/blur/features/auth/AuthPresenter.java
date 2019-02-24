@@ -9,6 +9,7 @@ import retrofit2.Retrofit;
 import tech.blur.core.PreferencesApi;
 import tech.blur.core.model.User;
 import tech.blur.core.model.UserAuth;
+import tech.blur.core.model.UserToken;
 import tech.blur.core.network.Carry;
 import tech.blur.core.network.DefaultCallback;
 import tech.blur.core.network.RetrofitProvider;
@@ -42,12 +43,14 @@ public class AuthPresenter extends MvpPresenter<AuthView> {
 
     void onSignInClicked(){
         if (!pass.isEmpty() && !login.isEmpty()) {
-            api.CheckUser(new UserAuth(login, pass)).enqueue(new DefaultCallback<>(new Carry<User>() {
+            api.CheckUser(new UserAuth(login, pass)).enqueue(new DefaultCallback<>(new Carry<UserToken>() {
                 @Override
-                public void onSuccess(User result) {
+                public void onSuccess(UserToken result) {
                     if (result != null) {
-                        PreferencesApi.setUser(result, prefs);
-                        if (result.getTrusted() == 0) getViewState().openRecovery();
+                        User user = result.getUser();
+                        PreferencesApi.setUser(user, prefs);
+                        PreferencesApi.setJwt(result.getToken(), prefs);
+                        if (user.getTrusted() == 0) getViewState().openRecovery();
                         else getViewState().openMainActivity();
                     } else getViewState().showMessage("Auth failed");
                 }

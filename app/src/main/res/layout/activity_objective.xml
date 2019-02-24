@@ -25,11 +25,11 @@
 
     <TextView
         android:id="@+id/objective_content"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="263dp"
+        android:layout_marginEnd="16dp"
         android:text="Content"
         android:textColor="@color/colorText"
         android:textSize="24sp"
