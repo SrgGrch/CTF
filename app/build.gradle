@@ -35,7 +35,5 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.5'
 
-    implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
-
 }
 
