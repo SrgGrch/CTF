@@ -36,9 +36,10 @@ public class RecoveryPresenter extends MvpPresenter<RecoveryView> {
                 .enqueue(new DefaultCallback<>(new Carry<User>() {
                     @Override
                     public void onSuccess(User result) {
-                        getViewState().onRecoveryComplete();
-                    }
 
+                         if (result != null) getViewState().onRecoveryComplete();
+                         else getViewState().showMessage("Wrong passphrase");
+                    }
                     @Override
                     public void onFailure(Throwable throwable) {
                         getViewState().showMessage("Wrong passphrase");
